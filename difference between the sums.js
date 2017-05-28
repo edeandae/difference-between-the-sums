@@ -10,7 +10,7 @@
 
 //[4,5,6,49,1,45,34,56] - [110]
 
-var integerArray=[4,5,6,49,1,45,34,56,110]
+var integerArray=[1,3,5,-5,-5,1,6,-10,100]
 
 var maxDifference=0
 var maxDifferenceFirstStart=0
@@ -40,14 +40,14 @@ function maxDifferenceCheck(firstStart, firstFinish, secondStart, secondFinish){
 }
 
 function maxDifferenceFind(){
-	firstSize=1
-	secondSize=1
-	size=integerArray.length
+	var firstSize=1;
+	var secondSize=1;
+	var size=integerArray.length;
 
-	firstStart=0
-	firstFinish=0
-	secondStart=0
-	secondFinish=0
+	var firstStart=0;
+	var firstFinish=0;
+	var secondStart=0;
+	var secondFinish=0;
 
 	//outher loop the sizes will change, first or in an inner side the second one, later or in an outher side the first
 	//inner loop only the positions will change
@@ -66,23 +66,36 @@ function maxDifferenceFind(){
 	secondFinish=secondStart+secondSize-1
 	*/
 
-	//proceding to multisizes for second subArray
+	//testing multiple first array sizes, fails as so
+	//for(var i=firstSize;i<=(size-1);i++){
 
-	for(i=secondSize;i<=(size-firstSize);i++){
+		//proceding to multisizes for second subArray, succesfull
+		firstFinish=firstSize-1;
+		for(var j=secondSize;j<=(size-firstSize);j++){		
+			secondStart=firstFinish+1;
+			secondFinish=secondStart+secondSize-1;
 
-		firstFinish=firstStart+firstSize-1
-		secondStart=firstFinish+1
-		secondFinish=secondStart+secondSize-1
-
-		//successfully moves and compares the second subarray with one size
-		for(i=secondFinish;i<=size;i++){
-			maxDifferenceCheck(firstStart,firstFinish,secondStart,secondFinish)
-			secondFinish++
-			secondStart++
-		}
-		secondSize++
-	}
-}
+			//successfully moves and compares the second subarray with one size
+			for(k=secondFinish;k<=size;k++){
+				maxDifferenceCheck(firstStart,firstFinish,secondStart,secondFinish)
+				secondFinish++;
+				secondStart++;
+				console.log("same size for both, change in position for second")
+			};
+			secondSize++;
+			console.log("same size for 1st, different size for second")
+		};
+		//firstSize++;
+	//}
+	console.log("maxDifference ", maxDifference)
+	console.log("firstStart ", maxDifferenceFirstStart)
+	console.log("firstFinish ", maxDifferenceFirstFinish)
+	console.log("secondStart ", maxDifferenceSecondStart)
+	console.log("secondFinish ", maxDifferenceSecondFinish)
+	console.log("firstSize ", firstSize)
+	console.log("secondSize ", secondSize)
+	console.log(size)
+};
 
 //array sum test
 //console.log(arraySum(0,2,integerArray))
@@ -103,13 +116,3 @@ console.log(maxDifferenceSecondFinish)
 //on to do check with all the posibilities
 
 maxDifferenceFind()
-console.log("maxDifference "+maxDifference)
-console.log("firstStart "+maxDifferenceFirstStart)
-console.log("firstFinish "+maxDifferenceFirstFinish)
-console.log("secondStart "+maxDifferenceSecondStart)
-console.log("secondFinish "+maxDifferenceSecondFinish)
-console.log("firstSize "+firstSize)
-console.log("secondSize "+secondSize)
-
-
-console.log(size)
