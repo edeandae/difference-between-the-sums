@@ -25,7 +25,7 @@ function arraySum(start, finish){
 		sum=sum+integerArray[i]
 	}
 	return sum
-}
+} 
 
 //checks whener the ranges sum differences are the max so far, if so replace the global variables accordingly
 function maxDifferenceCheck(firstStart, firstFinish, secondStart, secondFinish){
